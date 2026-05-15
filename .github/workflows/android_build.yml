@@ -19,15 +19,11 @@ jobs:
         flutter-version: '3.19.6'
         channel: 'stable'
     
-    - name: Limpar projeto  # <-- ADICIONE ESTA PARTE
-      run: |
-        flutter clean
-        cd android
-        ./gradlew clean
-        cd ..
-    
-    - name: Baixar dependências  # <-- ADICIONE ESTA PARTE
+    - name: Instalar dependências
       run: flutter pub get
     
-    - name: Build APK  # <-- ADICIONE ESTA PARTE
+    - name: Limpar projeto
+      run: flutter clean
+    
+    - name: Build APK
       run: flutter build apk --release
