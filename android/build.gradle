@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.seu.app.namespace"  // ⚠️ SUBSTITUA pelo seu pacote (ex: com.controle.gastos)
+    namespace = "com.controle.gastos"  // Use seu namespace real
     compileSdk = 34
     
     compileOptions {
@@ -13,7 +13,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.seu.app.id"  // ⚠️ SUBSTITUA pelo seu ID de aplicativo
+        applicationId = "com.controle.gastos"  // Use seu applicationId real
         minSdk = 21
         targetSdk = 34
         versionCode = 1
@@ -22,15 +22,11 @@ android {
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.debug  // Mude para sua configuração de release quando tiver chaves
+            signingConfig = signingConfigs.debug  // Para teste, mude depois
         }
     }
 }
 
 flutter {
     source = "../.."
-}
-
-dependencies {
-    // Adicione dependências extras aqui se necessário
 }
