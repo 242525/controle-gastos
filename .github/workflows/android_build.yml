@@ -3,8 +3,6 @@ name: Build APK
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
@@ -13,17 +11,25 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Configurar Flutter
+    - name: Setup Flutter
       uses: subosito/flutter-action@v2
       with:
         flutter-version: '3.19.6'
         channel: 'stable'
     
-    - name: Instalar dependências
-      run: flutter pub get
+    - name: Clean project
+      run: |
+        flutter clean
+        rm -rf .dart_tool/
+        cd android
+        if [ -f "gradlew" ]; then
+          chmod +x gradlew
+          ./gradlew clean
+        fi
+        cd ..
     
-    - name: Limpar projeto
-      run: flutter clean
+    - name: Get dependencies
+      run: flutter pub get
     
     - name: Build APK
       run: flutter build apk --release
