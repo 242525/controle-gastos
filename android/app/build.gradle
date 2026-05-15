@@ -8,20 +8,11 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    // No GitHub Actions, the flutter SDK path is handled by the tool, 
-    // but we need a fallback for the build script not to crash.
-    flutterRoot = System.getenv('FLUTTER_ROOT') ?: '/usr/local/flutter'
+    flutterRoot = System.getenv('FLUTTER_ROOT')
 }
 
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
-}
-
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = '1.0.0'
-}
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode') ?: '1'
+def flutterVersionName = localProperties.getProperty('flutter.versionName') ?: '1.0.0'
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
