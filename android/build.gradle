@@ -1,18 +1,36 @@
-buildscript {
-    ext.kotlin_version = '1.8.10'
-    repositories {
-        google()
-        mavenCentral()
+plugins {
+    id "com.android.application"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.seu.app.namespace"  // ⚠️ SUBSTITUA pelo seu pacote (ex: com.controle.gastos)
+    compileSdk = 34
+    
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+    defaultConfig {
+        applicationId = "com.seu.app.id"  // ⚠️ SUBSTITUA pelo seu ID de aplicativo
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug  // Mude para sua configuração de release quando tiver chaves
+        }
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    // Adicione dependências extras aqui se necessário
 }
