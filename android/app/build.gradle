@@ -1,3 +1,25 @@
+plugins {
+    id "com.android.application"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace "com.seu.app.namespace"  // Coloque seu pacote aqui (ex: com.exemplo.app)
+    compileSdk 34
+    
+    defaultConfig {
+        applicationId "com.seu.app.id"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+flutter {
+    source '../..'  // Isso especifica onde está o código Flutter
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
